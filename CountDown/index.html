@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Put it here">
+     <meta name="application-name" content="AppName">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="Billy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<title>Count Down</title>
+
+<link href="stylesheet.css" rel="stylesheet">
+<style>
+body{
+    background: #0066ff; 
+}
+.Message{
+    background-color: blue;
+    display: inline-block;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    
+}
+.Message .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 30px;
+}
+.close:hover{
+    color: black;
+}
+
+.center{
+    text-align: center;
+    width:75%;
+    height:80%;
+    position: fixed;
+    top:10%;
+    left: 15%;
+  
+    
+}
+#down{
+    font-size:100px;
+     
+}
+    input[type="text"]
+{
+    font-size:100px;
+    text-align: center;
+    font-family: 'Crystal';
+}
+#Output{
+    display: none;
+    padding: 10% 10%;
+   background: #0066ff; 
+font-family: 'Crystal';
+font-size:250px;
+}
+#butt{
+    float: bottom;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+#trig{
+    display: none;
+}
+.vb{
+    display: inline-block;
+    padding: 5px 10px;
+    background: white;
+}
+
+
+h1{
+font-family: 'Crystal';
+}
+
+@media screen and (max-width: 500px) {
+    body {
+       background: rebeccapurple;
+        font-size: 20px; 
+    }
+}
+
+</style>
+
+</head>
+<body>
+
+
+
+<!--<h1>Count Down</h1>-->
+
+
+<div class="center">
+
+<form name="Check" id="down">
+    <div id = "Set">
+    <br>
+    <br>
+     <input type="text" id="hours" value= 00  size="1" maxlength="2"> :
+     <input type="text" id="minutes" value= 01  size="1" maxlength="2"> :
+     <input type="text" id="seconds" value= 10  size="1" maxlength="2">
+    </div>
+    <div id="Output" onclick="screenfull.toggle(this)"></div>
+     <br>
+    
+</form>
+ <div id="butt" >
+    <button type="button"  id="trig" onclick="Trig()">START</button>
+    <button type="button" id="set"  onclick="Reset()">SET</button>
+</div>
+
+</div>
+
+<div class="Message" >
+ <strong>   Simple Instructions:
+    <ol>
+        <li>Set Time</li>
+        <li>Click Start</li>
+        <li>Click the Timer to trigger Fullscreen mode</li>
+        <li>in FullScreen Mode press Space to Pause</li>
+    </ol>
+    <span class="close" onclick="this.parentElement.style.display='none';">&times</span>
+ </strong>
+ 
+</div>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+<script src="js/screenfull.min.js"></script>
+
+<script>
+
+ var go,begin = true;
+ var t =  setInterval(CountDown,1000);
+ var hour;
+ var min ;
+ var sec ;
+var out;
+function Two(numb){
+    //alert(numb+ "=" +numb.length);
+    if(numb.length > 1){
+        return numb;
+    }
+    else if(numb  < 10 ){
+        return "0"+numb;
+    }else{
+        return numb;
+    }
+}
+
+function Trig(){
+    
+        if(go){
+            go=false;
+            document.getElementById('Output').style.color = "red";
+            document.getElementById('trig').innerHTML = "CONTINUE";
+          }else{
+            go=true;
+            document.getElementById('Output').style.color = "black";
+            document.getElementById('trig').innerHTML = "PAUSE";
+
+            }
+}
+
+function Reset(){
+    if(begin){
+    hour = document.getElementById("hours").value;
+    min = document.getElementById("minutes").value;
+    sec = document.getElementById("seconds").value;
+    document.getElementById("Output").innerHTML = Two(hour) +":"+ Two(min) +":" + Two(sec) ;
+    go = false;
+    document.getElementById('Set').style.display='none';
+    document.getElementById('Output').style.display='inline';
+    begin=false;
+
+    document.getElementById('Output').style.color = "black";
+    document.getElementById("trig").style.display = 'inline';
+    document.getElementById("trig").innerHTML = "START";
+    document.getElementById("set").innerHTML = "RESET";
+    }
+    else if(!begin){
+        document.getElementById('Set').style.display='inline';
+        document.getElementById('Output').style.display='none';
+        begin = true;
+        document.getElementById("trig").style.display = 'none';
+        document.getElementById("set").innerHTML = "SET";
+    }
+}
+    
+
+function CountDown(){
+   
+  
+ if(go){
+
+     document.getElementById("Output").innerHTML = Two(hour) +":"+ Two(min) +":" + Two(sec) ;
+      
+        if( hour <= 0 && min <= 0 && sec <= 0 ){
+            go = false;
+        }
+        else {
+             sec--;
+            if(sec==-1){
+                  sec= 59;
+            min--;
+            if(min==-1){
+                min=59;
+                hour--;
+                }
+            }
+          
+        }
+        
+    } 
+
+}
+var fm;
+
+
+/*	$('#Output').click(function () {
+				screenfull.toggle(this);
+			});*/
+
+window.addEventListener("keydown", function(event) {
+ if((event.code == 'KeyP'|| event.code=='Space') && screenfull.isFullscreen){
+    Trig();
+    
+ }
+}, true);
+
+
+</script>
+
+
+</body>
+</html> 
