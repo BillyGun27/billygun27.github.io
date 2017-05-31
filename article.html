@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="My Personal Website">
+    <meta name="application-name" content="XV">
+    <meta name="keywords" content="Web,App,Art">
+    <meta name="author" content="Billy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- <meta http-equiv="refresh" content="30"> -->
+   
+    
+    <title>Xamarin Tutorial</title>
+
+    <!-- framework -->
+    <link rel="stylesheet" type="text/css" href="css/prettify.css">
+     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/design.css">
+
+  </head>
+  <body onload="PR.prettyPrint()">
+
+     <nav class="navbar nav-design navbar-fixed-top">
+      <div class="container">
+        <div class="row">
+              <div class="col-md-4"> <div class="circle">
+             <!--   <a href=" " data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> -->
+                  </div>
+                </div>
+              <div class="col-md-4 center"> <h1><strong>XV</strong></h1></div>
+              <div class="col-md-4"> </div>
+      </div>
+      </div>
+     </nav>
+    <div class="main">
+
+      <div class="jumbotron"  id="bg">
+      <div class="container">
+        <div>
+          <h2>Membuat Aplikasi Sederhana dengan Xamarin</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+              <div class="col-md-offset-1 col-md-8 art" > 
+                  <div class="article" >
+                  <p> Xamarin adalah bagian dari tools yang dimiliki Visual Studio untuk membuat Aplikasi Cross Platform. 
+                   Aplikasi yang dapat dibuat terdiri dari Android, IOS dan Windows Phone. Bahasa yang digunakan Xamarin adalah bahasa C#.
+                    Tentu saat pertama kali ingin mempelajari hal baru kita akan kebingungan untuk memulai dari mana. Oleh karena Saya berharap
+                    tutorial ini dapat membantu siapapun yang ingin belajar Xamarin. Beberapa kode yang ada di tutorial ini saya peroleh dari dicoding dan
+                    tutorial yang diberikan Microsoft saat Saya mengikuti seleksi dari Microsoft Student Partner, jadi Saya Mohon Maaf jika ada kesamaan kode. 
+                    Tutorial ini dibuat  untuk merangkum semua materi yang telah saya peroleh dari berbagai sumber.
+                      </p>    
+                    <p>Aplikasi yang akan saya buat adalah aplikasi To Do List menggunaknan Xamarin dan Microsoft Azure sebagai database. Aplikasi ini
+                       dapat digunakan untuk mencatat banyak hal seperti rencana kegiatan, daftar barang dan hal-hal yang ingin dilakukan </p>   
+                      <p>Berikut langkah-langkah pembuatan aplikasi ini:<br>
+                        1. masuk ke <a href="portal.azure.com">Portal Azure</a><br>
+                        2. pilih new lalu cari Mobile App QuickStart<br>
+                        <img style="width:80%;" src="img/tutorial1.jpg" alt="mobile app quickstart"><br><br>
+                        3. klik Mobile App QuickStart<br>
+                        <img style="width:80%;" src="img/tutorial2.jpg" alt="mobile app quickstart"><br><br>
+                        4. Isi data yang diperlukan sesuai keinginan kalian. Untuk Appname nama ini akan digunakan 
+                        sebagai url untuk keperluan mengakses azure dari xamarin app yang akan kalian buat <br>
+                        <img style="width:80%;" src="img/tutorial3.jpg" alt="mobile app quickstart"><br><br>
+                        5. Setelah proses pembuatan appservice selesai maka anda dapat melihat overview. Disana akan ada URL yang dapat digunakan untuk 
+                        mengakses azure, namanya akan sama seperti AppName tadi. Setelah itu pilaih Easy Table untuk membuat database, jika kesulitan tulis saja 
+                        Easy Table pada database <br>
+                        <img style="width:80%;" src="img/tutorial4.jpg" alt="mobile app quickstart"><br><br>
+                        5. Pada database tambahkan kolom baru untuk tempat data yang kalian ingin masukkan,sesuaikan tipe data sesuai dengan kebutuhan.
+                         Disini Saya membuat kolom dengan nama Title, Desc, dan Status dan tipe nya String.
+                        <br>
+                        <img style="width:80%;" src="img/tutorial5.jpg" alt="mobile app quickstart"><br><br>
+                        6. Setelah App Service Azure siap kita bisa mulai membuat aplikasi dengan xamarin. Langkah selanjutnya adalah
+                        membuka Visual Studio yang sudah terinstall xamarin didalamnya<br>
+                        7. Setelah itu pilih File > New > Project <br>
+                        <img style="width:80%;" src="img/tutorial6.jpg" alt="mobile app quickstart"><br><br>
+                        8. Pilih Cross Platform App (Xamarin.form or Native) <br>
+                        <img style="width:80%;" src="img/tutorial7.jpg" alt="mobile app quickstart"><br><br>
+                        9. Pilih Xamarin.form dan Shared Project <br>
+                        <img style="width:80%;" src="img/tutorial8.jpg" alt="mobile app quickstart"><br><br>
+                        10. Setelah Project selesai dibuat maka akan ada solution explorer di sebelah kanan disana anda 
+                        dapat menambah file atau folder untuk project anda<br>
+                        <img style="width:80%;" src="img/tutorial9.jpg" alt="mobile app quickstart"><br><br>
+                        11. Di Solution Explorer jika anda klik kanan padah salah satu item maka akan muncul pilihan add dimana kalian
+                        bisa menambah folder atau script<br>
+                        <img style="width:80%;" src="img/tutorial10.jpg" alt="mobile app quickstart"><br><br>
+                        12. Setelah itu jangan lupa untuk mendownload package yang diperlukan untuk azure melalui Tools > Nuget Package Manager > 
+                         Manage Nuget Package for Solution.. <br>
+                        <img style="width:80%;" src="img/tutorial11.jpg" alt="mobile app quickstart"><br><br>
+                        13. Cari dan Install Microsoft.Azure.Mobile.Client dan tunggu hingga proses selesai  <br>
+                        <img style="width:80%;" src="img/tutorial12.jpg" alt="mobile app quickstart"><br><br>
+                        14. Setelah semua persiapan telah selesai kita bis mulai menulis kode untuk aplikasi yang akan kita buat.
+                        Pertama kita akan membuat class yang bernama <strong>Constants.cs</strong> disini saya membuat semua class dalam
+                        satu folder agar terlihat lebih rapi, namun ini tergantung dari preferensi anda. Sekedar mengingatkan jika anda menggunakan
+                        class di folder tersebut jangan lupa menambahkan 
+                        <br>
+          <pre class="prettyprint">
+          using NamaProject.NamaFolder;
+          </pre>
+                        pada class yang ingin mengakses class yang ada di folder tersebut.
+                        kembali lagi pada <strong>Constants.cs</strong> tambahkan kode berikut:
+<pre class="prettyprint">
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace CheckList.Logic
+{
+    public static class Constants
+    {
+        public static string ApplicationURL = @"http://simpledata.azurewebsites.net";
+    }
+}
+</pre> Jangan lupa untuk mengubah isi ApplicationURL sesuai dengan URL yang anda peroleh dari azure.
+Selain itu gunakan namespace yang sesuai dengan nama project anda. Saya menggunakan <em> namespace Checklist.Logic </em> karena project saya bernama Checklist dan class 
+ini berada di folder logic. Oleh karena itu sesuaikan dengan nama project anda dan jika tidak menggunakan folder,<em> namespace namaproject </em> saja sudah cukup                       
+                       <br>
+                       15. Setelah itu buat object untuk data yang kita buat, Class ini akan berisi sesuai dengan nama data yang kita buat di Easy Table, Karna saya menamai
+                       Table saya Target, maka class baru yang saya buat akan saya namai <strong>Target.cs</strong>. kemudian isinya sama seperti nama yang saya masukkan ke
+                       table Target. Isi codenya seperti ini namun jangan lupa untuk menyesuaikan kode anda seperti pengaturan yang sudah anda buat pada Azure sebelumnya
+ <pre class="prettyprint">
+using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json;
+
+namespace CheckList.Logic
+{
+    public class Target
+    {
+        private string _id;
+        [JsonProperty(PropertyName = "id")]
+        public string Id {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+        private string _Title;
+        [JsonProperty(PropertyName = "Title")]
+        public string Title {
+            get { return _Title; }
+            set { _Title = value; }
+        }
+
+        private string _Desc;
+        [JsonProperty(PropertyName = "Desc")]
+        public string Desc {
+            get { return _Desc; }
+            set { _Desc = value; }
+        }
+
+        private string _Status;
+        [JsonProperty(PropertyName = "Status")]
+        public string Status {
+            get { return _Status; }
+            set { _Status = value; }
+        }
+
+        [Version]
+        public string Version { get; set; }
+    }
+}
+
+          </pre><br>16. Lalu buat class lagi untuk memanipulasi data sepeti mengambil data, menambah dan menghapus data dari azure. Saya menamai Class saya
+          <strong>DataManager.cs</strong> isi nya kurang lebih sebagai berikut:
+ <pre class="prettyprint">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
+using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using CheckList;
+using CheckList.Logic;
+
+namespace CheckList.Logic
+{
+   public class DataManager
+    {
+        private IMobileServiceTable<Target> _ActivityList;
+
+        public DataManager() {
+            var client = new MobileServiceClient(Constants.ApplicationURL);
+            _ActivityList = client.GetTable<Target>();
+        }
+        
+        public async Task<ObservableCollection<Target>> GetDataAsync() {
+            try {
+                IEnumerable<Target> targets = await _ActivityList.ToEnumerableAsync();
+                return new ObservableCollection<Target>(targets);
+            }
+            catch (MobileServiceInvalidOperationException msioe) {
+                Debug.WriteLine("@Invalid sync operation: {0}", msioe.Message);
+            }
+            catch (Exception e) {
+                Debug.WriteLine(@"Sync error: {0}", e.Message);
+            }
+            return null;
+        }
+
+        public async Task SaveDataAsync(Target target) {
+            if (target.Id == null) {
+                await _ActivityList.InsertAsync(target);
+            }
+            else {
+                await _ActivityList.UpdateAsync(target);
+            }
+        }
+
+        public async Task DeleteDataAsync(Target target) {
+            await _ActivityList.DeleteAsync(target);
+
+        }
+
+
+
+    }
+}
+          </pre><br>17. Berikutnya buat Class bernama <strong> ActivityIndicatorScope.cs </strong> untuk memberikan indikasi loading untuk memberi tahu pengguna bahwa
+           aplikasi sedang mengambil data dari Azure. Berikut isi kodenya:
+<pre class="prettyprint">
+using System;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+namespace CheckList
+{
+    public class ActivityIndicatorScope : IDisposable {
+        private bool _showIndicator;
+        private ActivityIndicator _indicator;
+        private Task _indicatorDelay;
+
+        public ActivityIndicatorScope(ActivityIndicator indicator, bool showIndicator) {
+            _indicator = indicator;
+            _showIndicator = showIndicator;
+
+            if (showIndicator) {
+                _indicatorDelay = Task.Delay(2000);
+                SetIndicatorActivity(true);
+            }
+            else {
+                _indicatorDelay = Task.FromResult(0);
+            }
+        }
+        private void SetIndicatorActivity(bool isActive) {
+            _indicator.IsVisible = isActive;
+            _indicator.IsRunning = isActive;
+        }
+
+        public void Dispose() {
+            if (_showIndicator) {
+                _indicatorDelay.ContinueWith(t => SetIndicatorActivity(false),
+                    TaskScheduler.FromCurrentSynchronizationContext());
+            }
+        }
+    }
+}
+
+</pre><br>18. Setelah program untuk mengolah data selesai dibuat kita bisa mulai membuat page. Untuk Halaman utama anda
+dapat menggunakan page default yaitu <strong>MainPage.xaml</strong> atau menambah page baru dan mengganti <em> new MainPage() </em> di 
+<strong> App.xaml.cs </strong> menjadi <em>new namaPageBaru(). Disini saya akan memnggunakan MainPage.xaml sebagai Page utama saya. 
+pada <strong>MainPage.xaml</strong> gunakan kode ini : 
+ <pre class="prettyprint">
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+&lt;ContentPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             xmlns:local=&quot;clr-namespace:CheckList&quot;
+             x:Class=&quot;CheckList.MainPage&quot; Title=&quot;Activity List&quot;&gt;
+
+    &lt;ContentPage.ToolbarItems BackgroundColor=&quot;yellow&quot; &gt;
+        &lt;ToolbarItem Text=&quot;Edit&quot; Clicked=&quot;EditList_OnClicked&quot;/&gt;
+        &lt;ToolbarItem Text=&quot;Add&quot;  Clicked=&quot;NewGoal_OnClicked&quot;/&gt; 
+    &lt;/ContentPage.ToolbarItems&gt;
+    &lt;ContentPage.Content&gt;
+        &lt;Grid&gt;
+            &lt;Grid.RowDefinitions&gt;
+                &lt;RowDefinition Height=&quot;*&quot; /&gt;
+            &lt;/Grid.RowDefinitions&gt;
+            &lt;ActivityIndicator  
+                       HorizontalOptions=&quot;Center&quot; 
+                       VerticalOptions=&quot;Center&quot; 
+                       IsVisible=&quot;False&quot; 
+                       IsEnabled=&quot;True&quot; 
+                       x:Name=&quot;syncIndicator&quot;/&gt;
+
+            &lt;ListView x:Name=&quot;ActivityList&quot; ItemTapped=&quot;EditList_OnItemTapped&quot;  IsPullToRefreshEnabled=&quot;True&quot; Refreshing=&quot;ListViewBarang_OnRefreshing&quot;&gt;
+                &lt;ListView.ItemTemplate&gt;
+                    &lt;DataTemplate&gt;
+                        &lt;ImageCell x:Name=&quot;ActList&quot; ImageSource=&quot;{Binding Status}&quot; Text=&quot;{Binding Title}&quot; Tapped=&quot;OnTapped&quot;  Detail=&quot;{Binding Desc}&quot; /&gt;
+                    &lt;/DataTemplate&gt;
+                &lt;/ListView.ItemTemplate&gt;
+            &lt;/ListView&gt;
+        &lt;/Grid&gt;
+   
+    &lt;/ContentPage.Content&gt;
+    
+&lt;/ContentPage&gt;
+          </pre>Pada <strong>MainPage.xaml.cs</strong> tambahkan :
+<pre class="prettyprint">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using CheckList.Logic;
+
+namespace CheckList
+{
+    public partial class MainPage : ContentPage
+	{
+        private DataManager _dataManager = new DataManager();
+		public MainPage()
+		{
+			InitializeComponent();
+            
+        }
+
+        protected override async void OnAppearing() {
+            base.OnAppearing();
+            await RefreshItems(true);
+
+        
+        }
+        
+        private async Task RefreshItems(bool showActivityIndicator) {
+            using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator)) {
+                ActivityList.ItemsSource = await _dataManager.GetDataAsync();
+                
+            }
+        }
+
+    
+
+
+        private async void NewGoal_OnClicked(object sender, EventArgs e) {
+            AddNewActivityPage addPage = new AddNewActivityPage(true);
+            await Navigation.PushAsync(addPage);
+        }
+
+
+        
+        Target item;
+        private async void EditList_OnItemTapped(object sender, ItemTappedEventArgs e) {
+            item = (Target)e.Item;
+           
+
+
+                 if (item.Status == "checkedbox.png") {
+                     item.Status = "checkbox.png";
+                    
+                 }
+                 else {
+                     item.Status = "checkedbox.png";
+                    ;
+                 }
+            await _dataManager.SaveDataAsync(item);
+            await RefreshItems(true);
+         
+        }
+
+       
+     
+        private async void EditList_OnClicked(object sender, EventArgs e) {
+          AddNewActivityPage addPage = new AddNewActivityPage();
+          addPage.BindingContext = item;
+          await Navigation.PushAsync(addPage);
+        }
+
+        private async void ListViewBarang_OnRefreshing(object sender, EventArgs e) {
+          var list = (ListView)sender;
+          Exception error = null;
+          try {
+              await RefreshItems(false);
+          }
+          catch (Exception ex) {
+              error = ex;
+          }
+          finally {
+              list.EndRefresh();
+          }
+
+          if (error != null) {
+              await DisplayAlert("Refresh Error !", "Couldn't refresh data (" + error.Message + ")", "OK");
+          }
+        }
+
+        }
+}
+
+</pre> Jangan lupa pada Andorid di folder Resource > Drawable tambahkan 2 gambar ini. Jika ingin menarget iOS tambahkan juga gambar ini di folder Drawable<br>
+<img src="img/checkbox.png" alt="empty checkbox">   <img src="img/checkedbox.png" alt="checked checkbox">
+<br>19. Lalu buat Page baru yang bertugas untuk menginput dan mengubah data dari list yang kita buat. Page ini akan diberi nama 
+<strong> AddNewActivityPage.xaml </strong>. Berikut isi Kodenya:
+<pre class="prettyprint">
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+&lt;ContentPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             x:Class=&quot;CheckList.AddNewActivityPage&quot;&gt;
+    &lt;ContentPage.Content&gt;
+        &lt;StackLayout x:Name=&quot;gvAct&quot; VerticalOptions=&quot;StartAndExpand&quot;&gt;
+            &lt;Label Text=&quot;Title&quot; /&gt;
+            &lt;Entry x:Name=&quot;ActTitle&quot; Text=&quot;{Binding Title}&quot; Placeholder=&quot;Wonderful Day&quot; /&gt;
+            &lt;Label Text=&quot;Desc&quot; /&gt;
+            &lt;Entry x:Name=&quot;ActDesc&quot; Text=&quot;{Binding Desc}&quot; Placeholder=&quot;Another Aventure Await!&quot; /&gt;
+            &lt;Button Text=&quot;Save&quot; Clicked=&quot;BtnSave_OnClick&quot; /&gt;
+            &lt;Button Text=&quot;Delete&quot; Clicked=&quot;BtnDel_OnClick&quot; /&gt;
+            &lt;Button Text=&quot;Return&quot; Clicked=&quot;Return_OnClick&quot; /&gt;
+        &lt;/StackLayout&gt;
+    &lt;/ContentPage.Content&gt;
+    
+&lt;/ContentPage&gt;
+</pre> Lalu pada <strong>AddNewActivityPage.xaml.cs</strong> tambahkan :
+<pre class="prettyprint">
+  using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using CheckList.Logic;
+
+namespace CheckList
+{
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class AddNewActivityPage : ContentPage
+	{
+        bool AddList;
+        private DataManager _dataManager = new DataManager();
+        public AddNewActivityPage ()
+		{
+			InitializeComponent ();
+		}
+
+        public AddNewActivityPage(bool ListType) {
+            InitializeComponent();
+            AddList = ListType;
+            if (AddList) {
+                ActTitle.Focus();     
+            }
+        }
+
+        private void ClearAll() {
+            foreach (var ctr in gvAct.Children) {
+                if (ctr is Entry) {
+                    var item = ctr as Entry;
+                    item.Text = string.Empty;
+                }
+            }
+        }
+        
+        private async void BtnSave_OnClick(object sender, EventArgs e) {
+            if (AddList) {
+                var target = new Target() {
+                    Title = ActTitle.Text,
+                    Desc = ActDesc.Text,
+                    Status = "checkbox.png",
+
+                };
+                await _dataManager.SaveDataAsync(target);
+                ClearAll();
+                await DisplayAlert("Keterangan", "Activity berhasil ditambah !", "OK");
+            }
+            else {
+                var target = (Target)this.BindingContext;
+                await _dataManager.SaveDataAsync(target);
+                await DisplayAlert("Keterangan", "Activity berhasil diupdate !", "OK");
+            }
+            await Navigation.PopAsync();
+        }
+
+        private async void BtnDel_OnClick(object sender, EventArgs e) {
+            var target = (Target)this.BindingContext;
+            await _dataManager.DeleteDataAsync(target);
+            await DisplayAlert("Keterangan", "Activity berhasil dihapus !", "OK");
+            await Navigation.PopAsync();
+        }
+
+        void Return_OnClick(object sender, EventArgs e) {
+            Navigation.PopAsync();
+        }
+
+    }
+}
+</pre>20. Pada <strong>App.xaml.cs</strong> modifikasi kodenya untuk membuat Navigasi seperti ini :
+<pre class="prettyprint">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Xamarin.Forms;
+
+namespace CheckList
+{
+	public partial class App : Application
+	{
+		public App ()
+		{
+			InitializeComponent();
+
+            MainPage = new NavigationPage(new MainPage()) {
+                BarBackgroundColor = Color.YellowGreen
+            };
+           
+
+           
+        }
+
+		protected override void OnStart ()
+		{
+			// Handle when your app starts
+		}
+
+		protected override void OnSleep ()
+		{
+			// Handle when your app sleeps
+		}
+
+		protected override void OnResume ()
+		{
+			// Handle when your app resumes
+		}
+	}
+}
+
+</pre> 21. Langkah terakhir adalah build project yang kita buat dan di run di simulator atau di android device yang kalian miliki.
+Jika berhasil maka aplikasi siap digunakan.<br>
+
+                        </p>  
+                               
+                  </div>
+                   
+                  </div>
+             <!-- <div class="col-md-offset-1  col-md-2 info"> On the Web</div> --> 
+      </div>
+    </div>
+
+
+
+    </div>
+     
+ 
+  
+
+  <ul id="slide-out" class="side-nav">
+    <li><div class="userView">
+      <div class="background">
+        <img src="images/office.jpg">
+      </div>
+      <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+      <a href="#!name"><span class="white-text name">John Doe</span></a>
+      <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+    <li><a href="#!">Second Link</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+  </ul>
+       
+    <!-- jQuery (necessary for JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <script>
+      
+      // Initialize collapse button
+      $(".button-collapse").sideNav();
+      // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+      //$('.collapsible').collapsible();
+    </script>
+  </body>
+</html>
