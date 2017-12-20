@@ -13,6 +13,8 @@ body{
     top: 0; 
     width: 100%; 
 }*/
+
+
 .nav-design{
     background: crimson;
 }
@@ -33,7 +35,7 @@ body{
 }
 
 a{
-  color: black;
+  color: rgb(0, 12, 116);
 }
 .box{
     width: 100%;
@@ -191,7 +193,7 @@ a{
  /* background-image : url(../inside.png);*/
 }
 .info{
-  background: yellow;
+  background: rgb(189, 189, 189);
 }
 .article{
   font-size: 20px;
